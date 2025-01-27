@@ -4,7 +4,7 @@
 
 **NAME**: DEEPAK PRASAD
 
-**INTERN ID**: 
+**INTERN ID**: CT6WGAP
 
 **DOMAIN**: DEVOPS
 
@@ -28,6 +28,16 @@ first update our linux machine sudo apt-get update it will update and install do
 sudo apt install docker.io  after installing docker i will install minikube so that i will deploy
 the microservices kubernetes deployment.
 i will paste all installing minikube command here i have used minikube.
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod +x /usr/local/bin/minikube
+Installing kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+Starting Minikube
+sudo usermod -aG docker $USER && newgrp docker
+ minikube start --driver=docker
 after installation of minikube you will create deployment name.
 vi nginx-deployment.yaml and inside i will write apiVersion kind deployment
 metadata, name of the deployment nginx-deployment, spec, replicas- 3, selector, matchlabels,
@@ -44,3 +54,8 @@ This whole process will take internally and within a second you can not realise 
 automatically pods for you.
 In deployment there is rolling update strategy 25% max surge available in deployment so here 
 there is no any downtime in deployment
+if you will describe deployments then you can see there is written there rolling update strategy this will help
+alot when your machines use by someone like if someone will delete the pod or replica set then the pod and replica set 
+will automatically get back within a second.pod replica set never get deleted
+untill unless you do not delete the deployment. as i mentioned above. This is advantage of deployment.
+if you want to scale up and scale down the deployment like you want 5 pod you can scale up easily in this deployment.
